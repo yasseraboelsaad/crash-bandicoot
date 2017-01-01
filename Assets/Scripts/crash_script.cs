@@ -50,12 +50,6 @@ public class crash_script : MonoBehaviour {
 			myAnim.SetTrigger ("spin");
 		}
 
-		//Wumpa Count
-		if(wumpacount==100){
-			hp++;
-			wumpacount = 0;
-		}
-
 		//if isFalling into hole
 		if(isFalling){
 			transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), Time.deltaTime*2f);
