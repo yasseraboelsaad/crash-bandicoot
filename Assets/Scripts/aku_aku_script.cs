@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class life_script : MonoBehaviour {
+public class aku_aku_script : MonoBehaviour {
 
 	GameObject player;
 	crash_script controlscript;
@@ -19,7 +19,7 @@ public class life_script : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
-			controlscript.hp++;
+			controlscript.akuaku++;
 			Destroy (this.gameObject);
 		}
 	}

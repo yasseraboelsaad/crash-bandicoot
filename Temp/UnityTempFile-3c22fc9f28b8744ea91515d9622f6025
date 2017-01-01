@@ -93,6 +93,8 @@
 'Assets/NoiseBrush/Scripts/Matrix.cs'
 'Assets/NoiseBrush/Scripts/Noise.cs'
 'Assets/OBJExport/OBJExporter.cs'
+'Assets/Scripts/aku_aku_script.cs'
+'Assets/Scripts/bounce_crate_script.cs'
 'Assets/Scripts/box_script.cs'
 'Assets/Scripts/crash_script.cs'
 'Assets/Scripts/hole_script.cs'
