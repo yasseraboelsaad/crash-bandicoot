@@ -12,6 +12,8 @@ public class crash_script : MonoBehaviour {
 	public int wumpacount;
 	public bool isFalling;
 	public int akuaku;
+	bool isProtected;
+	private double Timer = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +22,12 @@ public class crash_script : MonoBehaviour {
 		hp = 3;
 		isFalling = false;
 		akuaku = 0;
+		isProtected=false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
+		Timer += Time.deltaTime;
 		//Controls
 		float v = Input.GetAxis ("Vertical");
 		if(v!=0 && !isWalking){
@@ -56,6 +59,25 @@ public class crash_script : MonoBehaviour {
 		//if isFalling into hole
 		if(isFalling){
 			transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), Time.deltaTime*2f);
+			hp = 0;
+		}
+
+		//akuaku is 3
+		if(akuaku==3){
+			isProtected = true;
+			akuaku = 2;
+			Timer = 0;
+		}
+		if(isProtected && Timer>=30){
+			isProtected = false;
+		}
+	}
+
+	public void hit(){
+		if(akuaku>0 && !isProtected){
+			akuaku--;	
+		}else if(akuaku==0 && !isProtected){
+			hp--;
 		}
 	}
 }
