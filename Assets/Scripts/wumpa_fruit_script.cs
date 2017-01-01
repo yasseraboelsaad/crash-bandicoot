@@ -17,6 +17,9 @@ public class wumpa_fruit_script : MonoBehaviour {
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
 			controlscript.wumpacount++;
+			if(controlscript.wumpacount%100==0){
+				controlscript.hp++;
+			}
 			Destroy (this.gameObject);
 		}
 	}
