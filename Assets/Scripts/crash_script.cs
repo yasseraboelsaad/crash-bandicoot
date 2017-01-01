@@ -35,7 +35,7 @@ public class crash_script : MonoBehaviour {
 		Button btn = resume.GetComponent<Button>();
 		btn.onClick.AddListener(TaskOnClick);
 		Button btn2 = quit.GetComponent<Button>();
-		btn.onClick.AddListener(TaskOnClick2);
+		btn2.onClick.AddListener(TaskOnClick2);
 	}
 
 	// Update is called once per frame
