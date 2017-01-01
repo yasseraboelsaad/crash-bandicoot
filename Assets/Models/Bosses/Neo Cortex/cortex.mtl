@@ -1,0 +1,56 @@
+# Material file for cortex.obj
+
+newmtl Material__62
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd gun2.png
+
+newmtl Material__64
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd gun.png
+
+newmtl Material__59
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Eyelidbottom.png
+
+newmtl Material__58
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd EyelidTop.png
+
+newmtl Material__61
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd body.png
+
+newmtl Material__60
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd body.png
+

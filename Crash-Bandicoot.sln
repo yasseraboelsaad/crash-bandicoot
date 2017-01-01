@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{41E8B1B1-EE2F-BFA6-9073-834F24619BCB}") = "Crash-Bandicoot", "Assembly-CSharp-firstpass.csproj", "{659DBDC8-C5DF-AE7E-3308-30EE8E4C12E3}"
+EndProject
+Project("{41E8B1B1-EE2F-BFA6-9073-834F24619BCB}") = "Crash-Bandicoot", "Assembly-CSharp.csproj", "{97AD1890-62DD-E0CE-5F56-14122B689B89}"
+EndProject
+Project("{41E8B1B1-EE2F-BFA6-9073-834F24619BCB}") = "Crash-Bandicoot", "Assembly-CSharp-Editor.csproj", "{05D9594C-4351-E292-5AA2-E275FF1C7BED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{659DBDC8-C5DF-AE7E-3308-30EE8E4C12E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659DBDC8-C5DF-AE7E-3308-30EE8E4C12E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659DBDC8-C5DF-AE7E-3308-30EE8E4C12E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659DBDC8-C5DF-AE7E-3308-30EE8E4C12E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97AD1890-62DD-E0CE-5F56-14122B689B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97AD1890-62DD-E0CE-5F56-14122B689B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97AD1890-62DD-E0CE-5F56-14122B689B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97AD1890-62DD-E0CE-5F56-14122B689B89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D9594C-4351-E292-5AA2-E275FF1C7BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D9594C-4351-E292-5AA2-E275FF1C7BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D9594C-4351-E292-5AA2-E275FF1C7BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D9594C-4351-E292-5AA2-E275FF1C7BED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
