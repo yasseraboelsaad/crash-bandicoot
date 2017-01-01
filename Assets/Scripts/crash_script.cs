@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class crash_script : MonoBehaviour {
 	public int WalkSpeed = 20;
@@ -14,6 +14,9 @@ public class crash_script : MonoBehaviour {
 	public int akuaku;
 	bool isProtected;
 	private double Timer = 0;
+	public Text wumpaText;
+	public Text crashText;
+	public Text akuakuText;
 
 	// Use this for initialization
 	void Start () {
@@ -50,12 +53,6 @@ public class crash_script : MonoBehaviour {
 			myAnim.SetTrigger ("spin");
 		}
 
-		//Wumpa Count
-		if(wumpacount==100){
-			hp++;
-			wumpacount = 0;
-		}
-
 		//if isFalling into hole
 		if(isFalling){
 			transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), Time.deltaTime*2f);
@@ -71,6 +68,11 @@ public class crash_script : MonoBehaviour {
 		if(isProtected && Timer>=30){
 			isProtected = false;
 		}
+
+		//GUI components
+		wumpaText.text = wumpacount.ToString ();
+		crashText.text = hp.ToString ();
+		akuakuText.text = akuaku.ToString ();
 	}
 
 	public void hit(){
