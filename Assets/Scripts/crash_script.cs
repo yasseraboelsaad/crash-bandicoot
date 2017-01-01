@@ -11,6 +11,7 @@ public class crash_script : MonoBehaviour {
 	public int hp;
 	public int wumpacount;
 	public bool isFalling;
+	public int akuaku;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class crash_script : MonoBehaviour {
 		wumpacount = 0;
 		hp = 3;
 		isFalling = false;
+		akuaku = 0;
 	}
 
 	// Update is called once per frame
