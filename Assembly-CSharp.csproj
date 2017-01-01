@@ -51,6 +51,7 @@
      <Compile Include="Assets\OBJExport\OBJExporter.cs" />
      <Compile Include="Assets\Scripts\box_script.cs" />
      <Compile Include="Assets\Scripts\crash_script.cs" />
+     <Compile Include="Assets\Scripts\hole_script.cs" />
      <Compile Include="Assets\Scripts\wumpa_fruit_script.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />

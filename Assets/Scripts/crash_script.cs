@@ -10,12 +10,14 @@ public class crash_script : MonoBehaviour {
 	bool isWalking=false;
 	public int hp;
 	public int wumpacount;
+	public bool isFalling;
 
 	// Use this for initialization
 	void Start () {
 		myAnim = GetComponent <Animator> ();
 		wumpacount = 0;
 		hp = 3;
+		isFalling = false;
 	}
 
 	// Update is called once per frame
@@ -47,6 +49,11 @@ public class crash_script : MonoBehaviour {
 		if(wumpacount==100){
 			hp++;
 			wumpacount = 0;
+		}
+
+		//if isFalling into hole
+		if(isFalling){
+			transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), Time.deltaTime*2f);
 		}
 	}
 }
