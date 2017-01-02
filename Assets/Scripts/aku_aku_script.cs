@@ -19,6 +19,9 @@ public class aku_aku_script : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
+			GameObject sound = GameObject.Find ("akuakuCollect");
+			AudioSource audio = sound.GetComponent<AudioSource>();
+			audio.Play ();
 			controlscript.akuaku++;
 			Destroy (this.gameObject);
 		}

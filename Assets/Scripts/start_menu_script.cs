@@ -52,7 +52,7 @@ public class start_menu_script : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		Application.LoadLevel("Level 1");
+		Application.LoadLevel("TransitionTo1");
 	}
 
 	void TaskOnClick2(){
@@ -69,7 +69,8 @@ public class start_menu_script : MonoBehaviour {
 	}
 
 	void TaskOnClick4(){
-		Application.Quit();
+	//mute here
+		AudioListener.volume = 0;
 	}
 
 	void TaskOnClick5(){

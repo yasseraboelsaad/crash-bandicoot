@@ -17,6 +17,9 @@ public class wumpa_fruit_script : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
+			GameObject sound = GameObject.Find ("wumpaFruitCollect");
+			AudioSource audio = sound.GetComponent<AudioSource>();
+			audio.Play ();
 			controlscript.wumpacount++;
 			if(controlscript.wumpacount%100==0){
 				controlscript.hp++;
