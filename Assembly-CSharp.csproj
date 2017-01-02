@@ -53,8 +53,11 @@
      <Compile Include="Assets\Scripts\bounce_crate_script.cs" />
      <Compile Include="Assets\Scripts\box_script.cs" />
      <Compile Include="Assets\Scripts\crash_script.cs" />
+     <Compile Include="Assets\Scripts\death_screen_script.cs" />
      <Compile Include="Assets\Scripts\hole_script.cs" />
      <Compile Include="Assets\Scripts\life_script.cs" />
+     <Compile Include="Assets\Scripts\start_menu_script.cs" />
+     <Compile Include="Assets\Scripts\win_script.cs" />
      <Compile Include="Assets\Scripts\wumpa_fruit_script.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
