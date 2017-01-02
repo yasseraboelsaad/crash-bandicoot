@@ -23,6 +23,8 @@ public class crash_script : MonoBehaviour {
 	public Button quit;
 	public Button restart;
 	public bool onCrate;
+	public GameObject boss;
+	static bool onlyOneAtk;
 
 	// Use this for initialization
 	void Start () {
@@ -122,6 +124,29 @@ public class crash_script : MonoBehaviour {
 		}else{
 			foreach(GameObject g in pauseObjects){
 				g.SetActive(true);
+			}
+		}
+	}
+
+	void OnTriggerEnter(Collider c) {
+		if (boss != null && c.gameObject.tag == "Boss") {
+			onlyOneAtk = true;
+		}
+	}
+
+	void OnTriggerStay(Collider c) {
+		if (boss != null && c.gameObject.tag == "Boss") {
+			Animator bossAnim = boss.GetComponentInChildren<Animator> ();
+			int normalAtkHash = Animator.StringToHash ("Crunch@normalAtk");
+			int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
+			if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				hit ();
+				onlyOneAtk = false;
+			}
+			if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+			    || bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				onlyOneAtk = true;
 			}
 		}
 	}

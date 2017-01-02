@@ -25,6 +25,12 @@ public class boss_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (bossHp == 0) {
+			bossAnim.SetTrigger ("u_ded");
+			isBossActive = false;
+			bossHp--;
+			bossAnim.SetBool ("isBossAlive", false);
+		}
 		if (lastAtkWasIn > 15.0) {
 			timerOn = false;
 			isBossVulnerable = true;
@@ -36,11 +42,11 @@ public class boss_script : MonoBehaviour {
 			int rand = Random.Range (0, 3);
 
 			if (rand != 2) {
-				if (!bossAnim.GetBool ("heavyAtk")) {
+				if (!bossAnim.GetBool ("heavyAtk") && !bossAnim.GetBool("booyakasha")) {
 					bossAnim.SetTrigger ("normalAtk");
 				}
 			} else {
-				if (!bossAnim.GetBool ("normalAtk")) {
+				if (!bossAnim.GetBool ("normalAtk") && !bossAnim.GetBool("booyakasha")) {
 					bossAnim.SetTrigger ("heavyAtk");
 				}
 			}
@@ -68,9 +74,9 @@ public class boss_script : MonoBehaviour {
 			if (currentState.shortNameHash == spinHash && isInBossZone) {
 				bossHp--;
 				isInBossZone = false;
-//				bossAnim.ResetTrigger ("normalAtk");
-//				bossAnim.ResetTrigger ("heavyAtk");
-				bossAnim.Play ("Crunch@taking_punch");
+				bossAnim.ResetTrigger ("normalAtk");
+				bossAnim.ResetTrigger ("heavyAtk");
+				bossAnim.SetTrigger ("booyakasha");
 				timerOn = true;
 				isBossVulnerable = false;
 			}
