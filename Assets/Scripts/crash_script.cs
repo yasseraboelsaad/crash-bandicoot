@@ -25,6 +25,7 @@ public class crash_script : MonoBehaviour {
 	public bool onCrate;
 	public GameObject boss;
 	static bool onlyOneAtk;
+	Animator bossAnim;
 
 	// Use this for initialization
 	void Start () {
@@ -136,12 +137,13 @@ public class crash_script : MonoBehaviour {
 
 	void OnTriggerStay(Collider c) {
 		if (boss != null && c.gameObject.tag == "Boss") {
-			Animator bossAnim = boss.GetComponentInChildren<Animator> ();
+			bossAnim = boss.GetComponentInChildren<Animator> ();
 			int normalAtkHash = Animator.StringToHash ("Crunch@normalAtk");
 			int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
 			if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
 				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
-				hit ();
+				int idleHash = Animator.StringToHash ("Crunch@idle");
+				StartCoroutine(hitAfterAnimationFinishes (idleHash));
 				onlyOneAtk = false;
 			}
 			if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
@@ -172,5 +174,10 @@ public class crash_script : MonoBehaviour {
 
 	void TaskOnClick3(){
 		Application.LoadLevel(Application.loadedLevel);
+	}
+
+	IEnumerator hitAfterAnimationFinishes(int idleHash) {
+		yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
+		hit ();
 	}
 }
