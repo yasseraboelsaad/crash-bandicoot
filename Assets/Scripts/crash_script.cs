@@ -22,6 +22,7 @@ public class crash_script : MonoBehaviour {
 	public Button resume;
 	public Button quit;
 	public Button restart;
+	public bool onCrate;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,7 @@ public class crash_script : MonoBehaviour {
 		btn2.onClick.AddListener(TaskOnClick2);
 		Button btn3 = restart.GetComponent<Button>();
 		btn3.onClick.AddListener(TaskOnClick3);
+		onCrate = false;
 	}
 
 	// Update is called once per frame
@@ -78,7 +80,7 @@ public class crash_script : MonoBehaviour {
 			}
 			transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
 			Rigidbody rb = GetComponent<Rigidbody> ();
-			if (Input.GetButtonDown ("Jump")) {
+			if (Input.GetButtonDown ("Jump") && (transform.position.y<1 || onCrate)) {
 				GameObject sound = GameObject.Find ("jump");
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
