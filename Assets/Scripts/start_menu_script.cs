@@ -52,7 +52,7 @@ public class start_menu_script : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		Application.LoadLevel("Level 1");
+		Application.LoadLevel("TransitionTo1");
 	}
 
 	void TaskOnClick2(){

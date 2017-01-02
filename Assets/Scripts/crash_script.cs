@@ -60,7 +60,6 @@ public class crash_script : MonoBehaviour {
 			}else{
 				isPaused = true;
 			}
-			print (isPaused);
 		}
 		if (!isPaused) {
 			//Hide Pause Menu
