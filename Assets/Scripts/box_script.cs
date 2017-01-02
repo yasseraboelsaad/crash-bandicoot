@@ -26,6 +26,9 @@ public class box_script : MonoBehaviour {
 			player.transform.position.x < (this.transform.position+ new Vector3(5,0,0)).x &&
 			player.transform.position.x > (this.transform.position- new Vector3(5,0,0)).x &&
 			currentBaseState.IsName("Spin")){
+			GameObject sound = GameObject.Find ("crateBreak");
+			AudioSource audio = sound.GetComponent<AudioSource>();
+			audio.Play ();
 			int rand = Random.Range(1, 4);
 			if(rand == 1){
 				controlscript.wumpacount=controlscript.wumpacount+10;

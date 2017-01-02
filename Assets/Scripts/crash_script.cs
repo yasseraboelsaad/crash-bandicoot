@@ -44,6 +44,9 @@ public class crash_script : MonoBehaviour {
 
 		//Dead
 		if(hp <=0){
+			GameObject sound = GameObject.Find ("CrashDie");
+			AudioSource audio = sound.GetComponent<AudioSource>();
+			audio.Play ();
 			Application.LoadLevel("Death Screen");
 		}
 
@@ -75,12 +78,18 @@ public class crash_script : MonoBehaviour {
 			transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
 			Rigidbody rb = GetComponent<Rigidbody> ();
 			if (Input.GetButtonDown ("Jump")) {
+				GameObject sound = GameObject.Find ("jump");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
 				myAnim.SetTrigger ("jump");
 				rb.AddForce (new Vector3 (0, JumpForce, 0), ForceMode.Impulse);
 			}
 			float h = Input.GetAxis ("Horizontal");
 			transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed);
 			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+				GameObject sound = GameObject.Find ("spin");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
 				myAnim.SetTrigger ("spin");
 			}
 
@@ -92,6 +101,9 @@ public class crash_script : MonoBehaviour {
 
 			//akuaku is 3
 			if (akuaku == 3) {
+				GameObject sound = GameObject.Find ("thirdAkuaku");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
 				isProtected = true;
 				akuaku = 2;
 				Timer = 0;
@@ -112,6 +124,9 @@ public class crash_script : MonoBehaviour {
 	}
 
 	public void hit(){
+		GameObject sound = GameObject.Find ("CrashHit");
+		AudioSource audio = sound.GetComponent<AudioSource>();
+		audio.Play ();
 		if(akuaku>0 && !isProtected){
 			akuaku--;	
 		}else if(akuaku==0 && !isProtected){
