@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class boss_script : MonoBehaviour {
-	Animator anim;
+	Animator bossAnim;
 	bool isBossActive;
 	static int idleState = Animator.StringToHash("idle");
 	public GameObject boss;
@@ -14,23 +14,23 @@ public class boss_script : MonoBehaviour {
 	void Start () {
 		bossHp = 3;
 		isBossActive = false;
-		anim = boss.GetComponent<Animator> ();
+		bossAnim = boss.GetComponent<Animator> ();
 		bossCam.enabled = false;
 		mainCam.enabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isBossActive && anim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
+		if (isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
 			int rand = Random.Range (0, 3);
 
 			if (rand != 2) {
-				if (!anim.GetBool ("heavyAtk")) {
-					anim.SetTrigger ("normalAtk");
+				if (!bossAnim.GetBool ("heavyAtk")) {
+					bossAnim.SetTrigger ("normalAtk");
 				}
 			} else {
-				if (!anim.GetBool ("normalAtk")) {
-					anim.SetTrigger ("heavyAtk");
+				if (!bossAnim.GetBool ("normalAtk")) {
+					bossAnim.SetTrigger ("heavyAtk");
 				}
 			}
 		}
@@ -45,9 +45,26 @@ public class boss_script : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionExit(Collider c) {
-		if (transform.tag == "Boss" && c.transform.tag == "Player") {
-			
+	void OnTriggerEnter(Collider c) {
+		if (transform.tag == "Boss" && c.gameObject.tag == "Player"
+			&& isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
+			Animator crashAnim = c.gameObject.GetComponentInChildren<Animator> ();
+			AnimatorStateInfo currentState = crashAnim.GetCurrentAnimatorStateInfo(0);
+			if (currentState.IsName ("Spin")) {
+				bossHp--;
+			}
 		}
 	}
+
+//	void OnCollisionEnter(Collision c) {
+//		Debug.Log ("see");
+//		if (transform.tag == "Boss" && c.gameObject.tag == "Player"
+//			&& isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
+//			Animator crashAnim = c.gameObject.GetComponentInChildren<Animator> ();
+//			AnimatorStateInfo currentState = crashAnim.GetCurrentAnimatorStateInfo(0);
+//			if (currentState.IsName ("Spin")) {
+//				bossHp--;
+//			}
+//		}
+//	}
 }
