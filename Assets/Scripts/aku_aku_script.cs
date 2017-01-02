@@ -14,11 +14,14 @@ public class aku_aku_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		transform.Rotate (0,50 * Time.deltaTime,0);
 	}
 
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
+			GameObject sound = GameObject.Find ("akuakuCollect");
+			AudioSource audio = sound.GetComponent<AudioSource>();
+			audio.Play ();
 			controlscript.akuaku++;
 			Destroy (this.gameObject);
 		}

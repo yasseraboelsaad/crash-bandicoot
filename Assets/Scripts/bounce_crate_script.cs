@@ -22,8 +22,10 @@ public class bounce_crate_script : MonoBehaviour {
 		   player.transform.position.x < (this.transform.position + new Vector3 (5, 0, 0)).x &&
 		   player.transform.position.x > (this.transform.position - new Vector3 (5, 0, 0)).x &&
 			player.transform.position.y > (this.transform.position).y) {
+			controlscript.onCrate = true;
 			controlscript.JumpForce = 20;
 		}else{
+			controlscript.onCrate = false;
 			controlscript.JumpForce = 10;
 		}
 	}
