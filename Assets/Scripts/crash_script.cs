@@ -42,6 +42,11 @@ public class crash_script : MonoBehaviour {
 	void Update () {
 		Timer += Time.deltaTime;
 
+		//Dead
+		if(hp <=0){
+			Application.LoadLevel("Death Screen");
+		}
+
 		//Pausing
 		if (Input.GetKeyDown ("p") || Input.GetKey (KeyCode.Escape)) {
 			if(isPaused){
@@ -119,6 +124,6 @@ public class crash_script : MonoBehaviour {
 	}
 
 	void TaskOnClick2(){
-		Debug.Log ("You have clicked the quit button!");
+		Application.Quit();
 	}
 }

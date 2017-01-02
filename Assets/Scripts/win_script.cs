@@ -19,7 +19,7 @@ public class win_script : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
-			print ("Next Level!");
+			Application.LoadLevel("Next Level");
 		}
 	}
 }
