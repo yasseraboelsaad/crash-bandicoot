@@ -1,13 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/life_script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/box_script.cs">
     <Files>
-      <File FileName="Assets/Scripts/crash_script.cs" Line="122" Column="21" />
-      <File FileName="Assets/Scripts/death_screen_script.cs" Line="24" Column="33" />
-      <File FileName="Assets/Scripts/start_menu_script.cs" Line="56" Column="1" />
-      <File FileName="Assets/Scripts/wumpa_fruit_script.cs" Line="15" Column="12" />
-      <File FileName="Assets/Scripts/aku_aku_script.cs" Line="17" Column="46" />
-      <File FileName="Assets/Scripts/life_script.cs" Line="17" Column="46" />
+      <File FileName="Assets/Scripts/crash_script.cs" Line="43" Column="19" />
+      <File FileName="Assets/Scripts/bounce_crate_script.cs" Line="28" Column="34" />
+      <File FileName="Assets/Scripts/box_script.cs" Line="28" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
