@@ -45,7 +45,9 @@ public class boss_script : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider c) {
+	void OnCollisionEnter(Collision c) {
+		if (transform.tag == "Boss")
+			Debug.Log ("eee");
 		if (transform.tag == "Boss" && c.gameObject.tag == "Player"
 			&& isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
 			Animator crashAnim = c.gameObject.GetComponentInChildren<Animator> ();
@@ -55,16 +57,4 @@ public class boss_script : MonoBehaviour {
 			}
 		}
 	}
-
-//	void OnCollisionEnter(Collision c) {
-//		Debug.Log ("see");
-//		if (transform.tag == "Boss" && c.gameObject.tag == "Player"
-//			&& isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
-//			Animator crashAnim = c.gameObject.GetComponentInChildren<Animator> ();
-//			AnimatorStateInfo currentState = crashAnim.GetCurrentAnimatorStateInfo(0);
-//			if (currentState.IsName ("Spin")) {
-//				bossHp--;
-//			}
-//		}
-//	}
 }
