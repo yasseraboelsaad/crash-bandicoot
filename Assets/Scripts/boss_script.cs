@@ -5,22 +5,33 @@ public class boss_script : MonoBehaviour {
 	Animator anim;
 	bool isBossActive;
 	static int idleState = Animator.StringToHash("idle");
+	public GameObject boss;
+	public Camera mainCam;
+	public Camera bossCam;
 
 	// Use this for initialization
 	void Start () {
 		isBossActive = false;
-		anim = GameObject.FindGameObjectWithTag ("Boss").GetComponent<Animator> ();
+		anim = boss.GetComponent<Animator> ();
+		bossCam.enabled = false;
+		mainCam.enabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isBossActive && anim.GetCurrentAnimatorStateInfo (0).IsName ("Crunch@idle")) {
-//			int rand = Random.Range (0, 2);
-			int rand = 1;
-			if (rand == 0) {
-				StartCoroutine (NormalAttack (0.0f));	
+		if (isBossActive && anim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
+			float rand = Random.Range (0, 3);
+
+			if (rand != 2) {
+				if (!anim.GetBool ("heavyAtk")) {
+					anim.SetTrigger ("normalAtk");
+				}
+//				StartCoroutine (NormalAttack (20));	
 			} else {
-				StartCoroutine (HeavyAttack (0.0f));
+				if (!anim.GetBool ("normalAtk")) {
+					anim.SetTrigger ("heavyAtk");
+				}
+//				StartCoroutine (HeavyAttack (10));
 			}
 		}
 	}
@@ -29,16 +40,18 @@ public class boss_script : MonoBehaviour {
 		if (transform.tag == "entry") {
 			GetComponent<Collider> ().isTrigger = false;
 			isBossActive = true;
+			bossCam.enabled = true;
+			mainCam.enabled = false;
 		}
 	}
 
 	IEnumerator NormalAttack(float time) {
 		yield return new WaitForSeconds (time);
-		anim.SetTrigger ("Normal Attack");
+		anim.SetTrigger ("normalAtk");
 	}
 
 	IEnumerator HeavyAttack(float time) {
 		yield return new WaitForSeconds (time);
-		anim.SetTrigger ("Heavy Attack");
+		anim.SetTrigger ("heavyAtk");
 	}
 }
