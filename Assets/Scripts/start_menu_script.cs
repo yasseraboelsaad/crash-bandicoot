@@ -69,7 +69,8 @@ public class start_menu_script : MonoBehaviour {
 	}
 
 	void TaskOnClick4(){
-		Application.Quit();
+	//mute here
+		AudioListener.volume = 0;
 	}
 
 	void TaskOnClick5(){
