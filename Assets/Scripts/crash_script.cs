@@ -21,6 +21,7 @@ public class crash_script : MonoBehaviour {
 	GameObject[] pauseObjects;
 	public Button resume;
 	public Button quit;
+	public Button restart;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +37,8 @@ public class crash_script : MonoBehaviour {
 		btn.onClick.AddListener(TaskOnClick);
 		Button btn2 = quit.GetComponent<Button>();
 		btn2.onClick.AddListener(TaskOnClick2);
+		Button btn3 = restart.GetComponent<Button>();
+		btn3.onClick.AddListener(TaskOnClick3);
 	}
 
 	// Update is called once per frame
@@ -140,5 +143,9 @@ public class crash_script : MonoBehaviour {
 
 	void TaskOnClick2(){
 		Application.Quit();
+	}
+
+	void TaskOnClick3(){
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }
