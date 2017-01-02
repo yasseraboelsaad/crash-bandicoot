@@ -44,7 +44,6 @@ public class crash_script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Timer += Time.deltaTime;
-
 		//Dead
 		if(hp <=0){
 			GameObject sound = GameObject.Find ("CrashDie");
