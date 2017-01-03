@@ -30,6 +30,9 @@ public class boss_script : MonoBehaviour {
 			isBossActive = false;
 			bossHp--;
 			bossAnim.SetBool ("isBossAlive", false);
+			GameObject sound = GameObject.Find ("EnemyDie");
+			AudioSource audio = sound.GetComponent<AudioSource>();
+			audio.Play ();
 		}
 		if (lastAtkWasIn > 15.0) {
 			timerOn = false;
@@ -72,6 +75,9 @@ public class boss_script : MonoBehaviour {
 			AnimatorStateInfo currentState = crashAnim.GetCurrentAnimatorStateInfo(0);
 			int spinHash = Animator.StringToHash ("Spin");
 			if (currentState.shortNameHash == spinHash && isInBossZone) {
+				GameObject sound = GameObject.Find ("EnemyHit");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
 				bossHp--;
 				isInBossZone = false;
 				bossAnim.ResetTrigger ("normalAtk");

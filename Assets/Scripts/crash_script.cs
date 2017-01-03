@@ -142,12 +142,15 @@ public class crash_script : MonoBehaviour {
 			int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
 			if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
 				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				GameObject sound = GameObject.Find ("CrashHit");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
 				int idleHash = Animator.StringToHash ("Crunch@idle");
 				StartCoroutine(hitAfterAnimationFinishes (idleHash));
 				onlyOneAtk = false;
 			}
 			if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
-			    || bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
 				onlyOneAtk = true;
 			}
 		}
@@ -157,6 +160,14 @@ public class crash_script : MonoBehaviour {
 		GameObject sound = GameObject.Find ("CrashHit");
 		AudioSource audio = sound.GetComponent<AudioSource>();
 		audio.Play ();
+		if(akuaku>0 && !isProtected){
+			akuaku--;	
+		}else if(akuaku==0 && !isProtected){
+			hp--;
+		}
+	}
+
+	public void hitWithoutSound(){
 		if(akuaku>0 && !isProtected){
 			akuaku--;	
 		}else if(akuaku==0 && !isProtected){
@@ -178,6 +189,6 @@ public class crash_script : MonoBehaviour {
 
 	IEnumerator hitAfterAnimationFinishes(int idleHash) {
 		yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
-		hit ();
+		hitWithoutSound ();
 	}
 }
