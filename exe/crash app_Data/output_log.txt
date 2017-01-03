@@ -1,0 +1,61 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 550M (ID=0xdf6)
+    Vendor:   NVIDIA
+    VRAM:     1999 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.225 seconds
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Unity Projects\crash-bandicoot\exe\crash app_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 21.825800 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 4c0 -> priority: 1 
+  Thread -> id: bec -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 25.001757 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 245.
+Total: 0.838506 ms (FindLiveObjects: 0.044131 ms CreateObjectMapping: 0.018986 ms MarkObjects: 0.676860 ms  DeleteObjects: 0.010263 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.549596 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 2342.
+Total: 0.900599 ms (FindLiveObjects: 0.085698 ms CreateObjectMapping: 0.029763 ms MarkObjects: 0.410016 ms  DeleteObjects: 0.374608 ms)
+
+ArgumentException: The Object you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at box_script.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 45.550293 ms
+
+Unloading 136 unused Assets to reduce memory usage. Loaded Objects now: 253.
+Total: 14.785218 ms (FindLiveObjects: 0.049263 ms CreateObjectMapping: 0.045158 ms MarkObjects: 0.216554 ms  DeleteObjects: 14.472703 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.480832 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 799.
+Total: 0.589622 ms (FindLiveObjects: 0.045158 ms CreateObjectMapping: 0.021552 ms MarkObjects: 0.299173 ms  DeleteObjects: 0.223225 ms)
+
