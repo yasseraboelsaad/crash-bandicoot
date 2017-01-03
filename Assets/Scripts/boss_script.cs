@@ -30,11 +30,13 @@ public class boss_script : MonoBehaviour {
 			isBossActive = false;
 			bossHp--;
 			bossAnim.SetBool ("isBossAlive", false);
-			GameObject sound = GameObject.Find ("EnemyDie");
+		}
+		if (bossAnim.GetCurrentAnimatorStateInfo (0).IsName ("Crunch@dying")) {
+			GameObject sound = GameObject.Find ("BossDie");
 			AudioSource audio = sound.GetComponent<AudioSource>();
 			audio.Play ();
 		}
-		if (lastAtkWasIn > 15.0) {
+		if (lastAtkWasIn > 12.0) {
 			timerOn = false;
 			isBossVulnerable = true;
 			lastAtkWasIn = 0.0;
@@ -43,7 +45,7 @@ public class boss_script : MonoBehaviour {
 			lastAtkWasIn += Time.deltaTime;
 		if (isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
 			int rand = Random.Range (0, 3);
-
+			// rand = 2;
 			if (rand != 2) {
 				if (!bossAnim.GetBool ("heavyAtk") && !bossAnim.GetBool("booyakasha")) {
 					bossAnim.SetTrigger ("normalAtk");
