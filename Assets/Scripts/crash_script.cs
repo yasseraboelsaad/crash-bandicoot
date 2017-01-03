@@ -23,6 +23,9 @@ public class crash_script : MonoBehaviour {
 	public Button quit;
 	public Button restart;
 	public bool onCrate;
+	public GameObject boss;
+	static bool onlyOneAtk;
+	Animator bossAnim;
 
 	// Use this for initialization
 	void Start () {
@@ -126,10 +129,45 @@ public class crash_script : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider c) {
+		if (boss != null && c.gameObject.tag == "Boss") {
+			onlyOneAtk = true;
+		}
+	}
+
+	void OnTriggerStay(Collider c) {
+		if (boss != null && c.gameObject.tag == "Boss") {
+			bossAnim = boss.GetComponentInChildren<Animator> ();
+			int normalAtkHash = Animator.StringToHash ("Crunch@normalAtk");
+			int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
+			if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				GameObject sound = GameObject.Find ("CrashHit");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
+				int idleHash = Animator.StringToHash ("Crunch@idle");
+				StartCoroutine(hitAfterAnimationFinishes (idleHash));
+				onlyOneAtk = false;
+			}
+			if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				onlyOneAtk = true;
+			}
+		}
+	}
+
 	public void hit(){
 		GameObject sound = GameObject.Find ("CrashHit");
 		AudioSource audio = sound.GetComponent<AudioSource>();
 		audio.Play ();
+		if(akuaku>0 && !isProtected){
+			akuaku--;	
+		}else if(akuaku==0 && !isProtected){
+			hp--;
+		}
+	}
+
+	public void hitWithoutSound(){
 		if(akuaku>0 && !isProtected){
 			akuaku--;	
 		}else if(akuaku==0 && !isProtected){
@@ -147,5 +185,10 @@ public class crash_script : MonoBehaviour {
 
 	void TaskOnClick3(){
 		Application.LoadLevel(Application.loadedLevel);
+	}
+
+	IEnumerator hitAfterAnimationFinishes(int idleHash) {
+		yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
+		hitWithoutSound ();
 	}
 }
