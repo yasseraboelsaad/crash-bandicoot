@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{307D35BB-4CD3-0C03-D5EB-1C0BF054AD3A}</ProjectGuid>
+    <ProjectGuid>{628A5535-DD23-06A7-61E4-33FE7EB0E7BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -49,20 +49,10 @@
      <Compile Include="Assets\NoiseBrush\Scripts\Matrix.cs" />
      <Compile Include="Assets\NoiseBrush\Scripts\Noise.cs" />
      <Compile Include="Assets\OBJExport\OBJExporter.cs" />
-     <Compile Include="Assets\Scripts\aku_aku_script.cs" />
-     <Compile Include="Assets\Scripts\boss_script.cs" />
-     <Compile Include="Assets\Scripts\bounce_crate_script.cs" />
+     <Compile Include="Assets\Scripts\Kart.cs" />
      <Compile Include="Assets\Scripts\box_script.cs" />
      <Compile Include="Assets\Scripts\crash_script.cs" />
-     <Compile Include="Assets\Scripts\death_screen_script.cs" />
      <Compile Include="Assets\Scripts\hole_script.cs" />
-     <Compile Include="Assets\Scripts\life_script.cs" />
-     <Compile Include="Assets\Scripts\start_menu_script.cs" />
-     <Compile Include="Assets\Scripts\transitionToLevel1_script.cs" />
-     <Compile Include="Assets\Scripts\transitionToLevel2_script.cs" />
-     <Compile Include="Assets\Scripts\transitionToLevel3_script.cs" />
-     <Compile Include="Assets\Scripts\transitionToLevel4_script.cs" />
-     <Compile Include="Assets\Scripts\win_script.cs" />
      <Compile Include="Assets\Scripts\wumpa_fruit_script.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
@@ -86,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{37FB586F-38B5-3BE9-49DE-BAF6CEA15A47}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{7CAB3F80-9B93-F725-3AD5-03C8031FF199}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
