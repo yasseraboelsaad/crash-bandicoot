@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class death_screen_script : MonoBehaviour {
 
 	public Button newGame;
 	public Button quit;
+	private Scene currentScene;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +15,7 @@ public class death_screen_script : MonoBehaviour {
 		btn.onClick.AddListener(TaskOnClick);
 		Button btn2 = quit.GetComponent<Button>();
 		btn2.onClick.AddListener(TaskOnClick2);
+		currentScene = SceneManager.GetActiveScene ();
 	}
 
 	// Update is called once per frame
@@ -21,7 +24,13 @@ public class death_screen_script : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		Application.LoadLevel("Level 1");
+		SceneManager.LoadScene(crash_script.lastScene);
+		GameObject[] rootObjects = SceneManager.GetActiveScene ().GetRootGameObjects ();
+		foreach (GameObject g in rootObjects) {
+			if (g.name == "Crash") {
+				g.GetComponent<crash_script> ().init ();
+			}
+		}
 	}
 
 	void TaskOnClick2(){
