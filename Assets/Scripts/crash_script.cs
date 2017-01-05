@@ -18,7 +18,7 @@ public class crash_script : MonoBehaviour {
 	public Text wumpaText;
 	public Text crashText;
 	public Text akuakuText;
-	bool isPaused;
+	public bool isPaused;
 	GameObject[] pauseObjects;
 	public Button resume;
 	public Button quit;
@@ -74,8 +74,10 @@ public class crash_script : MonoBehaviour {
 		if (Input.GetKeyDown ("p") || Input.GetKey (KeyCode.Escape)) {
 			if(isPaused){
 				isPaused = false;
+				boss_script.isPaused = false;
 			}else{
 				isPaused = true;
+				boss_script.isPaused = true;
 			}
 		}
 		if (!isPaused) {

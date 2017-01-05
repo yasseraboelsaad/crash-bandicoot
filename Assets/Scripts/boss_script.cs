@@ -13,6 +13,7 @@ public class boss_script : MonoBehaviour {
 	public Camera bossCam;
 	public int bossHp;
 	private double lastAtkWasIn = 0.0;
+	public static bool isPaused;
 
 	// Use this for initialization
 	void Start () {
@@ -21,50 +22,69 @@ public class boss_script : MonoBehaviour {
 		bossCam.enabled = false;
 		mainCam.enabled = true;
 		isBossVulnerable = true;
+		isPaused = false;
+	}
+
+	public void init () {
+		bossHp = 3;
+		bossCam.enabled = false;
+		mainCam.enabled = true;
+		isBossVulnerable = true;
+		isBossActive = false;
+		isInBossZone = false;
+		timerOn = false;
+		lastAtkWasIn = 0.0;
+		isPaused = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (bossHp == 0) {
-			bossAnim.SetTrigger ("u_ded");
-			isBossActive = false;
-			bossHp--;
-			bossAnim.SetBool ("isBossAlive", false);
+		if (isPaused) {
+			bossAnim.ResetTrigger ("normalAtk");
+			bossAnim.ResetTrigger ("heavyAtk");
+			bossAnim.ResetTrigger ("booyakasha");
 		}
-		if (bossAnim.GetCurrentAnimatorStateInfo (0).IsName ("Crunch@dying")) {
-			if (bossAnim.GetCurrentAnimatorStateInfo (0).normalizedTime <= 0.1) {
-				GameObject sound = GameObject.Find ("BossDie");
-				AudioSource audio = sound.GetComponent<AudioSource> ();
-				audio.Play ();
+		else {
+			if (bossHp == 0) {
+				bossAnim.SetTrigger ("u_ded");
+				isBossActive = false;
+				bossHp--;
+				bossAnim.SetBool ("isBossAlive", false);
 			}
-			if (bossAnim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
-				GameObject.Find ("Crash").GetComponent<win_script> ().nextScene ();
-			}
-		}
-		if (lastAtkWasIn > 12.0) {
-			timerOn = false;
-			isBossVulnerable = true;
-			lastAtkWasIn = 0.0;
-		}
-		if (timerOn)
-			lastAtkWasIn += Time.deltaTime;
-		if (isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
-			int rand = Random.Range (0, 3);
-			// rand = 2;
-			if (rand != 2) {
-				if (!bossAnim.GetBool ("heavyAtk") && !bossAnim.GetBool("booyakasha")) {
-					bossAnim.SetTrigger ("normalAtk");
+			if (bossAnim.GetCurrentAnimatorStateInfo (0).IsName ("Crunch@dying")) {
+				if (bossAnim.GetCurrentAnimatorStateInfo (0).normalizedTime <= 0.1) {
+					GameObject.Find ("BossMusic").GetComponent<AudioSource> ().Stop ();
+					GameObject.Find ("BossDie").GetComponent<AudioSource> ().Play ();
 				}
-			} else {
-				if (!bossAnim.GetBool ("normalAtk") && !bossAnim.GetBool("booyakasha")) {
-					bossAnim.SetTrigger ("heavyAtk");
+				if (bossAnim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
+					GameObject.Find ("Crash").GetComponent<win_script> ().nextScene ();
+				}
+			}
+			if (lastAtkWasIn > 12.0) {
+				timerOn = false;
+				isBossVulnerable = true;
+				lastAtkWasIn = 0.0;
+			}
+			if (timerOn)
+				lastAtkWasIn += Time.deltaTime;
+			if (isBossActive && bossAnim.GetCurrentAnimatorStateInfo (0).tagHash == idleState) {
+				int rand = Random.Range (0, 3);
+				// rand = 2;
+				if (rand != 2) {
+					if (!bossAnim.GetBool ("heavyAtk") && !bossAnim.GetBool ("booyakasha")) {
+						bossAnim.SetTrigger ("normalAtk");
+					}
+				} else {
+					if (!bossAnim.GetBool ("normalAtk") && !bossAnim.GetBool ("booyakasha")) {
+						bossAnim.SetTrigger ("heavyAtk");
+					}
 				}
 			}
 		}
 	}
 
 	void OnTriggerEnter(Collider c) {
-		if (transform.tag == "Boss" && c.gameObject.tag == "Player"
+		if (!isPaused && transform.tag == "Boss" && c.gameObject.tag == "Player"
 		    && isBossActive) {
 			isInBossZone = true;
 		}
@@ -76,7 +96,7 @@ public class boss_script : MonoBehaviour {
 		//				+ (bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState).ToString()
 		//				+ '\n' + c.gameObject.tag);
 		//		}
-		if (isBossVulnerable && transform.tag == "Boss" && c.gameObject.tag == "Player"
+		if (!isPaused && isBossVulnerable && transform.tag == "Boss" && c.gameObject.tag == "Player"
 			&& isBossActive && bossAnim.GetCurrentAnimatorStateInfo(0).tagHash == idleState) {
 			Animator crashAnim = c.gameObject.GetComponentInChildren<Animator> ();
 			AnimatorStateInfo currentState = crashAnim.GetCurrentAnimatorStateInfo(0);
