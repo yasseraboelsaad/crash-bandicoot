@@ -27,16 +27,13 @@ public class win_script : MonoBehaviour {
 			else {
 //				string newScene = crash_script.lastScene;
 				StringBuilder sb = new StringBuilder (crash_script.lastScene);
-				Debug.Log ("old: " + sb.ToString());
 				int sceneNumber = int.Parse (sb.ToString().Substring (sb.Length - 1));
 				int newSceneNumber = sceneNumber + 1;
-				Debug.Log (sceneNumber.ToString () + " " + newSceneNumber.ToString ());
 				sb.Length--;
 				string newScene = sb.ToString ();
 				newScene += newSceneNumber.ToString ();
 				newScene = newScene.Replace (" ", string.Empty);
 				newScene = "TransitionTo" + newScene;
-				Debug.Log ("new: " + newScene);
 				SceneManager.LoadScene (newScene);
 			}
 
@@ -50,16 +47,13 @@ public class win_script : MonoBehaviour {
 		else {
 			//				string newScene = crash_script.lastScene;
 			StringBuilder sb = new StringBuilder (crash_script.lastScene);
-			Debug.Log ("old: " + sb.ToString());
 			int sceneNumber = int.Parse (sb.ToString().Substring (sb.Length - 1));
 			int newSceneNumber = sceneNumber + 1;
-			Debug.Log (sceneNumber.ToString () + " " + newSceneNumber.ToString ());
 			sb.Length--;
 			string newScene = sb.ToString ();
 			newScene += newSceneNumber.ToString ();
 			newScene = newScene.Replace (" ", string.Empty);
 			newScene = "TransitionTo" + newScene;
-			Debug.Log ("new: " + newScene);
 			SceneManager.LoadScene (newScene);
 		}
 	}
