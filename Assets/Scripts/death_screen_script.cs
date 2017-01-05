@@ -28,6 +28,9 @@ public class death_screen_script : MonoBehaviour {
 			if (g.name == "Crash") {
 				g.GetComponent<crash_script> ().init ();
 			}
+			if (g.name == "Crunch") {
+				g.GetComponent<boss_script> ().init ();
+			}
 		}
 	}
 
