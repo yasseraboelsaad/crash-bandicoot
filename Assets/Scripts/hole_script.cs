@@ -17,7 +17,7 @@ public class hole_script : MonoBehaviour {
 	
 	}
 	void OnTriggerEnter(Collider c){
-		if (player.GetComponent <Collider> () == c) {
+		if (player.GetComponent <Collider> () == c && !controlscript.isProtected) {
 			controlscript.isFalling=true;
 			controlscript.hp=0;
 		}
