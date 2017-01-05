@@ -13,7 +13,7 @@ public class crash_script : MonoBehaviour {
 	public int wumpacount;
 	public bool isFalling;
 	public int akuaku;
-	bool isProtected;
+	public bool isProtected;
 	private double Timer = 0;
 	public Text wumpaText;
 	public Text crashText;
@@ -145,6 +145,9 @@ public class crash_script : MonoBehaviour {
 	void OnTriggerEnter(Collider c) {
 		if (boss != null && c.gameObject.tag == "Boss") {
 			onlyOneAtk = true;
+		}
+		if (c.gameObject.CompareTag ("enemies") && isProtected) {
+			Destroy (c.gameObject);
 		}
 	}
 
