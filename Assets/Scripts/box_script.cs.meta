@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 553c50baf0be1438b9d6b098b9d7ed3d
-timeCreated: 1483029475
+timeCreated: 1483382586
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - aku_aku: {fileID: 1000012225830186, guid: 15b0a998315304060a014493e2d21a92, type: 2}
+  - life: {fileID: 1000012096933980, guid: 7bf3a7f942d5c43c6be301fce6dc7c14, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

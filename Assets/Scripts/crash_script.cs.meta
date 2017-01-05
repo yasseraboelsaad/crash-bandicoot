@@ -1,10 +1,20 @@
 fileFormatVersion: 2
 guid: 0a59770934563c1498bc1d7f2a9cac24
-timeCreated: 1482873365
+timeCreated: 1483382644
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wumpaText: {fileID: 114000013894290202, guid: ed1f12c7e54584be3907b2ab915244f6,
+      type: 2}
+  - crashText: {fileID: 114000012646913952, guid: ed1f12c7e54584be3907b2ab915244f6,
+      type: 2}
+  - akuakuText: {fileID: 114000013344571664, guid: ed1f12c7e54584be3907b2ab915244f6,
+      type: 2}
+  - resume: {fileID: 114000010942009984, guid: ed1f12c7e54584be3907b2ab915244f6, type: 2}
+  - quit: {fileID: 114000011335163302, guid: ed1f12c7e54584be3907b2ab915244f6, type: 2}
+  - restart: {fileID: 114000012897095394, guid: ed1f12c7e54584be3907b2ab915244f6,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
