@@ -7,7 +7,6 @@ public class death_screen_script : MonoBehaviour {
 
 	public Button newGame;
 	public Button quit;
-	private Scene currentScene;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +14,6 @@ public class death_screen_script : MonoBehaviour {
 		btn.onClick.AddListener(TaskOnClick);
 		Button btn2 = quit.GetComponent<Button>();
 		btn2.onClick.AddListener(TaskOnClick2);
-		currentScene = SceneManager.GetActiveScene ();
 	}
 
 	// Update is called once per frame
