@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class crash_script : MonoBehaviour {
 	public int WalkSpeed = 20;
@@ -26,6 +27,7 @@ public class crash_script : MonoBehaviour {
 	public GameObject boss;
 	static bool onlyOneAtk;
 	Animator bossAnim;
+	public static string lastScene;
 
 	// Use this for initialization
 	void Start () {
@@ -46,8 +48,19 @@ public class crash_script : MonoBehaviour {
 		onCrate = false;
 	}
 
+	public void init() {
+		wumpacount = 0;
+		hp = 3;
+		isFalling = false;
+		akuaku = 0;
+		isProtected=false;
+		isPaused = false;
+		onCrate = false;
+	}
+
 	// Update is called once per frame
 	void Update () {
+		lastScene = SceneManager.GetActiveScene ().name;
 		Timer += Time.deltaTime;
 		//Dead
 		if(hp <=0){

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class death_screen_script : MonoBehaviour {
 
@@ -21,7 +22,13 @@ public class death_screen_script : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		Application.LoadLevel("Level 1");
+		SceneManager.LoadScene(crash_script.lastScene);
+		GameObject[] rootObjects = SceneManager.GetActiveScene ().GetRootGameObjects ();
+		foreach (GameObject g in rootObjects) {
+			if (g.name == "Crash") {
+				g.GetComponent<crash_script> ().init ();
+			}
+		}
 	}
 
 	void TaskOnClick2(){
