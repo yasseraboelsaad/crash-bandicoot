@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class crash_script : MonoBehaviour {
 	public int WalkSpeed = 20;
@@ -12,7 +13,7 @@ public class crash_script : MonoBehaviour {
 	public int wumpacount;
 	public bool isFalling;
 	public int akuaku;
-	bool isProtected;
+	public bool isProtected;
 	private double Timer = 0;
 	public Text wumpaText;
 	public Text crashText;
@@ -23,6 +24,10 @@ public class crash_script : MonoBehaviour {
 	public Button quit;
 	public Button restart;
 	public bool onCrate;
+	public GameObject boss;
+	static bool onlyOneAtk;
+	Animator bossAnim;
+	public static string lastScene;
 
 	// Use this for initialization
 	void Start () {
@@ -43,8 +48,19 @@ public class crash_script : MonoBehaviour {
 		onCrate = false;
 	}
 
+	public void init() {
+		wumpacount = 0;
+		hp = 3;
+		isFalling = false;
+		akuaku = 0;
+		isProtected=false;
+		isPaused = false;
+		onCrate = false;
+	}
+
 	// Update is called once per frame
 	void Update () {
+		lastScene = SceneManager.GetActiveScene ().name;
 		Timer += Time.deltaTime;
 		//Dead
 		if(hp <=0){
@@ -73,10 +89,12 @@ public class crash_script : MonoBehaviour {
 			if (v != 0 && !isWalking) {
 				myAnim.SetBool ("isWalking", true);
 				isWalking = true;
+
 			}
 			if (v == 0) {
 				myAnim.SetBool ("isWalking", false);
 				isWalking = false;
+
 			}
 			transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
 			Rigidbody rb = GetComponent<Rigidbody> ();
@@ -84,7 +102,9 @@ public class crash_script : MonoBehaviour {
 				GameObject sound = GameObject.Find ("jump");
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
-				myAnim.SetTrigger ("jump");
+				if (gameObject.GetComponent<Animator> () != null) {
+					myAnim.SetTrigger ("jump");
+				}
 				rb.AddForce (new Vector3 (0, JumpForce, 0), ForceMode.Impulse);
 			}
 			float h = Input.GetAxis ("Horizontal");
@@ -94,6 +114,7 @@ public class crash_script : MonoBehaviour {
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
 				myAnim.SetTrigger ("spin");
+				
 			}
 
 			//if isFalling into hole
@@ -126,10 +147,49 @@ public class crash_script : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider c) {
+		if (boss != null && c.gameObject.tag == "Boss") {
+			onlyOneAtk = true;
+		}
+		if (c.gameObject.CompareTag ("enemies") && isProtected) {
+			Destroy (c.gameObject);
+		}
+	}
+
+	void OnTriggerStay(Collider c) {
+		if (boss != null && c.gameObject.tag == "Boss") {
+			bossAnim = boss.GetComponentInChildren<Animator> ();
+			int normalAtkHash = Animator.StringToHash ("Crunch@normalAtk");
+			int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
+			if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				GameObject sound = GameObject.Find ("CrashHit");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
+				int idleHash = Animator.StringToHash ("Crunch@idle");
+				StartCoroutine(hitAfterAnimationFinishes (idleHash));
+				onlyOneAtk = false;
+			}
+			if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				onlyOneAtk = true;
+			}
+		}
+
+	}
+
 	public void hit(){
 		GameObject sound = GameObject.Find ("CrashHit");
 		AudioSource audio = sound.GetComponent<AudioSource>();
 		audio.Play ();
+		if(akuaku>0 && !isProtected){
+			akuaku--;	
+		}else if(akuaku==0 && !isProtected){
+			hp--;
+		}
+	}
+
+	public void hitWithoutSound(){
 		if(akuaku>0 && !isProtected){
 			akuaku--;	
 		}else if(akuaku==0 && !isProtected){
@@ -147,5 +207,12 @@ public class crash_script : MonoBehaviour {
 
 	void TaskOnClick3(){
 		Application.LoadLevel(Application.loadedLevel);
+	}
+
+	IEnumerator hitAfterAnimationFinishes(int idleHash) {
+		
+		yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
+		hitWithoutSound ();
+
 	}
 }

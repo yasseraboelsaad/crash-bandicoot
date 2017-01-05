@@ -1,11 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/wumpa_fruit_script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\box_script.cs">
     <Files>
-      <File FileName="Assets/Scripts/wumpa_fruit_script.cs" Line="8" Column="17" />
-      <File FileName="Assets/Scripts/crash_script.cs" Line="30" Column="18" />
-      <File FileName="Assets/Scripts/bounce_crate_script.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/box_script.cs" Line="28" Column="37" />
+      <File FileName="Assets\Scripts\crash_script.cs" Line="186" Column="10" />
+      <File FileName="Assets\Scripts\box_script.cs" Line="36" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
