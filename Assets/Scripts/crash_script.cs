@@ -31,9 +31,7 @@ public class crash_script : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(gameObject.GetComponent<Animator>() != null) {
-			myAnim = GetComponent <Animator> ();
-		}
+		myAnim = GetComponent <Animator> ();
 		wumpacount = 0;
 		hp = 3;
 		isFalling = false;
@@ -89,16 +87,14 @@ public class crash_script : MonoBehaviour {
 			//Controls
 			float v = Input.GetAxis ("Vertical");
 			if (v != 0 && !isWalking) {
-				if(gameObject.GetComponent<Animator>() != null) {
-					myAnim.SetBool ("isWalking", true);
-					isWalking = true;
-				}
+				myAnim.SetBool ("isWalking", true);
+				isWalking = true;
+
 			}
 			if (v == 0) {
-				if (gameObject.GetComponent<Animator> () != null) {
-					myAnim.SetBool ("isWalking", false);
-					isWalking = false;
-				}
+				myAnim.SetBool ("isWalking", false);
+				isWalking = false;
+
 			}
 			transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
 			Rigidbody rb = GetComponent<Rigidbody> ();
@@ -117,9 +113,8 @@ public class crash_script : MonoBehaviour {
 				GameObject sound = GameObject.Find ("spin");
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
-				if (gameObject.GetComponent<Animator>() != null) {
-					myAnim.SetTrigger ("spin");
-				}
+				myAnim.SetTrigger ("spin");
+				
 			}
 
 			//if isFalling into hole
@@ -163,25 +158,24 @@ public class crash_script : MonoBehaviour {
 
 	void OnTriggerStay(Collider c) {
 		if (boss != null && c.gameObject.tag == "Boss") {
-			if(gameObject.GetComponent<Animator>() != null){
-				bossAnim = boss.GetComponentInChildren<Animator> ();
-				int normalAtkHash = Animator.StringToHash ("Crunch@normalAtk");
-				int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
-				if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
-					|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
-					GameObject sound = GameObject.Find ("CrashHit");
-					AudioSource audio = sound.GetComponent<AudioSource>();
-					audio.Play ();
-					int idleHash = Animator.StringToHash ("Crunch@idle");
-					StartCoroutine(hitAfterAnimationFinishes (idleHash));
-					onlyOneAtk = false;
-				}
-				if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
-					|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
-					onlyOneAtk = true;
-				}
+			bossAnim = boss.GetComponentInChildren<Animator> ();
+			int normalAtkHash = Animator.StringToHash ("Crunch@normalAtk");
+			int heavyAtkHash = Animator.StringToHash ("Crunch@heavyAtk");
+			if (onlyOneAtk && (bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				GameObject sound = GameObject.Find ("CrashHit");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Play ();
+				int idleHash = Animator.StringToHash ("Crunch@idle");
+				StartCoroutine(hitAfterAnimationFinishes (idleHash));
+				onlyOneAtk = false;
+			}
+			if (!(bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == normalAtkHash
+				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
+				onlyOneAtk = true;
 			}
 		}
+
 	}
 
 	public void hit(){
@@ -216,9 +210,9 @@ public class crash_script : MonoBehaviour {
 	}
 
 	IEnumerator hitAfterAnimationFinishes(int idleHash) {
-		if(gameObject.GetComponent<Animator>() != null) {
-			yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
-			hitWithoutSound ();
-		}
+		
+		yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
+		hitWithoutSound ();
+
 	}
 }
