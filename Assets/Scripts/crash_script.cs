@@ -18,7 +18,7 @@ public class crash_script : MonoBehaviour {
 	public Text wumpaText;
 	public Text crashText;
 	public Text akuakuText;
-	bool isPaused;
+	public bool isPaused;
 	GameObject[] pauseObjects;
 	public Button resume;
 	public Button quit;
@@ -74,8 +74,10 @@ public class crash_script : MonoBehaviour {
 		if (Input.GetKeyDown ("p") || Input.GetKey (KeyCode.Escape)) {
 			if(isPaused){
 				isPaused = false;
+				boss_script.isPaused = false;
 			}else{
 				isPaused = true;
+				boss_script.isPaused = true;
 			}
 		}
 		if (!isPaused) {
@@ -89,12 +91,10 @@ public class crash_script : MonoBehaviour {
 			if (v != 0 && !isWalking) {
 				myAnim.SetBool ("isWalking", true);
 				isWalking = true;
-
 			}
 			if (v == 0) {
 				myAnim.SetBool ("isWalking", false);
 				isWalking = false;
-
 			}
 			transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
 			Rigidbody rb = GetComponent<Rigidbody> ();
@@ -102,9 +102,7 @@ public class crash_script : MonoBehaviour {
 				GameObject sound = GameObject.Find ("jump");
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
-				if (gameObject.GetComponent<Animator> () != null) {
-					myAnim.SetTrigger ("jump");
-				}
+				myAnim.SetTrigger ("jump");
 				rb.AddForce (new Vector3 (0, JumpForce, 0), ForceMode.Impulse);
 			}
 			float h = Input.GetAxis ("Horizontal");
@@ -114,7 +112,6 @@ public class crash_script : MonoBehaviour {
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
 				myAnim.SetTrigger ("spin");
-				
 			}
 
 			//if isFalling into hole
@@ -151,9 +148,6 @@ public class crash_script : MonoBehaviour {
 		if (boss != null && c.gameObject.tag == "Boss") {
 			onlyOneAtk = true;
 		}
-		if (c.gameObject.CompareTag ("enemies") && isProtected) {
-			Destroy (c.gameObject);
-		}
 	}
 
 	void OnTriggerStay(Collider c) {
@@ -175,7 +169,6 @@ public class crash_script : MonoBehaviour {
 				onlyOneAtk = true;
 			}
 		}
-
 	}
 
 	public void hit(){
@@ -210,9 +203,7 @@ public class crash_script : MonoBehaviour {
 	}
 
 	IEnumerator hitAfterAnimationFinishes(int idleHash) {
-		
 		yield return new WaitUntil (() => bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == idleHash);
 		hitWithoutSound ();
-
 	}
 }
