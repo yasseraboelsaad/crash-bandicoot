@@ -32,9 +32,14 @@ public class boss_script : MonoBehaviour {
 			bossAnim.SetBool ("isBossAlive", false);
 		}
 		if (bossAnim.GetCurrentAnimatorStateInfo (0).IsName ("Crunch@dying")) {
-			GameObject sound = GameObject.Find ("BossDie");
-			AudioSource audio = sound.GetComponent<AudioSource>();
-			audio.Play ();
+			if (bossAnim.GetCurrentAnimatorStateInfo (0).normalizedTime <= 0.1) {
+				GameObject sound = GameObject.Find ("BossDie");
+				AudioSource audio = sound.GetComponent<AudioSource> ();
+				audio.Play ();
+			}
+			if (bossAnim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
+				GameObject.Find ("Crash").GetComponent<win_script> ().nextScene ();
+			}
 		}
 		if (lastAtkWasIn > 12.0) {
 			timerOn = false;
