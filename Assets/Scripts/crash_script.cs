@@ -28,6 +28,7 @@ public class crash_script : MonoBehaviour {
 	static bool onlyOneAtk;
 	Animator bossAnim;
 	public static string lastScene;
+	boss_script bossScript;
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +47,7 @@ public class crash_script : MonoBehaviour {
 		Button btn3 = restart.GetComponent<Button>();
 		btn3.onClick.AddListener(TaskOnClick3);
 		onCrate = false;
+		bossScript = boss.GetComponent<boss_script> ();
 	}
 
 	public void init() {
@@ -96,7 +98,35 @@ public class crash_script : MonoBehaviour {
 				myAnim.SetBool ("isWalking", false);
 				isWalking = false;
 			}
-			transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
+
+			if (lastScene != "Level 4") {
+				transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
+			} 
+			else {
+				if (bossScript.isBossActive) {
+					if (v > 0) {
+						if (transform.eulerAngles.y != 450.0f) {
+							Vector3 temp = transform.rotation.eulerAngles;
+							temp.y = 450.0f;
+							transform.rotation = Quaternion.Euler(temp);
+						}
+						transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
+					} else {
+						if (v < 0) {
+							if (transform.eulerAngles.y != 630.0f) {
+								Vector3 temp = transform.rotation.eulerAngles;
+								temp.y = 630.0f;
+								transform.rotation = Quaternion.Euler(temp);
+							}
+							transform.Translate (Vector3.forward * -v * WalkSpeed * Time.deltaTime);
+						}
+					}
+				} 
+				else {
+					transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
+				}
+			}
+
 			Rigidbody rb = GetComponent<Rigidbody> ();
 			if (Input.GetButtonDown ("Jump") && (transform.position.y<1 || onCrate)) {
 				GameObject sound = GameObject.Find ("jump");
@@ -106,7 +136,34 @@ public class crash_script : MonoBehaviour {
 				rb.AddForce (new Vector3 (0, JumpForce, 0), ForceMode.Impulse);
 			}
 			float h = Input.GetAxis ("Horizontal");
-			transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed);
+
+			if (lastScene != "Level 4") {
+				transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed);
+			} 
+			else {
+				if (bossScript.isBossActive) {
+					if (h < 0) {
+						if (transform.eulerAngles.y != 360.0f) {
+							Vector3 temp = transform.rotation.eulerAngles;
+							temp.y = 360.0f;
+							transform.rotation = Quaternion.Euler(temp);
+						}
+						transform.Translate (Vector3.forward * -h * WalkSpeed * Time.deltaTime);
+					} else {
+						if (h > 0) {
+							if (transform.eulerAngles.y != 540.0f) {
+								Vector3 temp = transform.rotation.eulerAngles;
+								temp.y = 540.0f;
+								transform.rotation = Quaternion.Euler(temp);
+							}
+							transform.Translate (Vector3.forward * h * WalkSpeed * Time.deltaTime);
+						}
+					}
+				} 
+				else {
+					transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed);
+				}
+			}
 			if (Input.GetKeyDown (KeyCode.LeftShift)) {
 				GameObject sound = GameObject.Find ("spin");
 				AudioSource audio = sound.GetComponent<AudioSource>();
@@ -168,6 +225,15 @@ public class crash_script : MonoBehaviour {
 				|| bossAnim.GetCurrentAnimatorStateInfo (0).shortNameHash == heavyAtkHash)) {
 				onlyOneAtk = true;
 			}
+		}
+	}
+
+	void OnTriggerExit(Collider c) {
+		if (c.gameObject.transform.tag == "entry") {
+			c.isTrigger = false;
+			bossScript.isBossActive = true;
+			bossScript.bossCam.enabled = true;
+			bossScript.mainCam.enabled = false;
 		}
 	}
 

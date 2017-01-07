@@ -3,10 +3,10 @@ using System.Collections;
 
 public class boss_script : MonoBehaviour {
 	Animator bossAnim;
-	static bool isBossActive;
-	static bool isInBossZone;
-	static bool timerOn;
-	static bool isBossVulnerable;
+	public bool isBossActive;
+	bool isInBossZone;
+	bool timerOn;
+	bool isBossVulnerable;
 	static int idleState = Animator.StringToHash("idle");
 	public GameObject boss;
 	public Camera mainCam;
@@ -113,15 +113,6 @@ public class boss_script : MonoBehaviour {
 				timerOn = true;
 				isBossVulnerable = false;
 			}
-		}
-	}
-
-	void OnTriggerExit(Collider c) {
-		if (transform.tag == "entry") {
-			GetComponent<Collider> ().isTrigger = false;
-			isBossActive = true;
-			bossCam.enabled = true;
-			mainCam.enabled = false;
 		}
 	}
 

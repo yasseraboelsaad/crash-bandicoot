@@ -1,0 +1,17 @@
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/omarelhagin/crash-bandicoot/obj/Debug/Assembly-CSharp.dll
+/Users/omarelhagin/crash-bandicoot/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/UnityEngine.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/UnityEditor.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Mono.Cecil.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Unity.DataContract.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/omarelhagin/crash-bandicoot/Temp/bin/Debug/Mono.Cecil.Mdb.dll
