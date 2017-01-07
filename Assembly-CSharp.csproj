@@ -64,7 +64,6 @@
      <Compile Include="Assets\Scripts\transitionToLevel3_script.cs" />
      <Compile Include="Assets\Scripts\transitionToLevel4_script.cs" />
      <Compile Include="Assets\Scripts\win_script.cs" />
-     <Compile Include="Assets\Scripts\win_script_2.cs" />
      <Compile Include="Assets\Scripts\wumpa_fruit_script.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
