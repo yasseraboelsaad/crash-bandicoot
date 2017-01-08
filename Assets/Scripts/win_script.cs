@@ -21,9 +21,6 @@ public class win_script : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 		if (player.GetComponent <Collider> () == c) {
-			if(Application.loadedLevelName.Equals ("Level 3")){
-				SceneManager.LoadScene ("TransitionToLevel4");
-			}
 			if (crash_script.lastScene.EndsWith ("4")) {
 				SceneManager.LoadScene ("credits");
 			} 
