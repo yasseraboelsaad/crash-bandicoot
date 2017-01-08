@@ -184,7 +184,7 @@ public class crash_script : MonoBehaviour {
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
 				isProtected = true;
-				akuaku = 2;
+				akuaku = 0;
 				Timer = 0;
 			}
 
