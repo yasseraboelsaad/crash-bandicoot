@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Kart : MonoBehaviour {
 	public int TurnSpeed = 50;
@@ -28,35 +29,46 @@ public class Kart : MonoBehaviour {
 		float v = Input.GetAxis ("Vertical");
 		transform.Translate (Vector3.forward * WalkSpeed * Time.deltaTime  );
 		float h = Input.GetAxis ("Horizontal");
-		transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed);
+		transform.Rotate (new Vector3 (0, 1, 0) * -h * Time.deltaTime * TurnSpeed);
 		checkKey ();
+
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.CompareTag ("apple")) {
 			apples = apples + 1;
 			applesText.text = "Apples : " + apples.ToString ();
+			other.gameObject.SetActive (false);
 		} else {
 			if(other.gameObject.CompareTag("mask")){
 				masks = masks + 1;
 				masksText.text = "Masks : " + masks.ToString ();
+				other.gameObject.SetActive (false);
 			} else { 
-				if (other.gameObject.CompareTag ("box")) {
-
+				if (other.gameObject.CompareTag ("bounce")) {
+					rigidBody.AddForce (new Vector3 (0, 10, 0), ForceMode.Impulse);
+					other.gameObject.SetActive (false);
 				} else {
 					if (other.gameObject.CompareTag ("hole")) {
-						lives = lives - 1;
-						livesText.text = "Lives : " + lives.ToString ();
+						WalkSpeed = 0;
+						SceneManager.LoadScene ("Death Screen");
+					} else {
+						if (other.gameObject.CompareTag ("finish")) {
+							WalkSpeed = 0;
+							SceneManager.LoadScene ("TransitionToLevel4");
+
+						}
 					}
 				}
 			}
 		}
-		other.gameObject.SetActive (false);
+
 	}
 
 	void checkKey() {
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			rigidBody.AddForce (new Vector3 (0, 10, 0), ForceMode.Impulse);
+			if (rigidBody.position.y < 6)
+				rigidBody.AddForce (new Vector3 (0, 10, 0), ForceMode.Impulse);
 		}
 	}
 
