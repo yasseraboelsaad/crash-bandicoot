@@ -10,6 +10,8 @@ public class box_script : MonoBehaviour {
 	GameObject AkuAkuMask;
 	public GameObject life;
 	GameObject LifeBox;
+	public GameObject wumpa;
+	GameObject WumpaFruit;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +33,8 @@ public class box_script : MonoBehaviour {
 			audio.Play ();
 			int rand = Random.Range(1, 4);
 			if(rand == 1){
+				WumpaFruit = Instantiate (wumpa, this.transform.position, Quaternion.identity) as GameObject;
+				WumpaFruit.transform.localScale =new Vector3 (2,2,2);
 				controlscript.wumpacount=controlscript.wumpacount+10;
 			}else if(rand==2){
 				AkuAkuMask = Instantiate (aku_aku, this.transform.position, Quaternion.identity) as GameObject;
