@@ -104,7 +104,7 @@ public class crash_script : MonoBehaviour {
 				transform.Translate (Vector3.forward * v * WalkSpeed * Time.deltaTime);
 			} 
 			else {
-				if (bossScript.isBossActive) {
+				if (bossScript.isBossActive || bossScript.bossHp == 0 || bossScript.bossHp == -1) {
 					if (v > 0) {
 						if (transform.eulerAngles.y != 450.0f) {
 							Vector3 temp = transform.rotation.eulerAngles;
@@ -142,7 +142,7 @@ public class crash_script : MonoBehaviour {
 				transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed);
 			} 
 			else {
-				if (bossScript.isBossActive) {
+				if (bossScript.isBossActive || bossScript.bossHp == 0 || bossScript.bossHp == -1) {
 					if (h < 0) {
 						if (transform.eulerAngles.y != 360.0f) {
 							Vector3 temp = transform.rotation.eulerAngles;
