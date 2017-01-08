@@ -13,6 +13,11 @@ public class Kart : MonoBehaviour {
 	public Text masksText;
 	public Text applesText;
 	public Rigidbody rigidBody;
+	public int cam;
+	public Camera fps;
+	public Camera tps;
+	public bool pause;
+	public GameObject quitButton;
 	// Use this for initialization
 	void Start () {
 		apples = 0;
@@ -21,6 +26,13 @@ public class Kart : MonoBehaviour {
 		livesText.text = "Lives : " + lives.ToString ();
 		masksText.text = "Masks : " + masks.ToString ();
 		applesText.text = "Apples : " + apples.ToString ();
+		cam = 1;
+		if (cam == 1) {
+			fps.gameObject.SetActive (true);
+			tps.gameObject.SetActive (false);
+		}
+		pause = false;
+		quitButton.SetActive (false);
 
 	}
 	
@@ -50,7 +62,7 @@ public class Kart : MonoBehaviour {
 					other.gameObject.SetActive (false);
 				} else {
 					if (other.gameObject.CompareTag ("hole")) {
-						WalkSpeed = 0;
+						//transform.localScale.y = transform.localScale.y - 
 						SceneManager.LoadScene ("Death Screen");
 					} else {
 						if (other.gameObject.CompareTag ("finish")) {
@@ -70,6 +82,37 @@ public class Kart : MonoBehaviour {
 			if (rigidBody.position.y < 6)
 				rigidBody.AddForce (new Vector3 (0, 10, 0), ForceMode.Impulse);
 		}
+
+		if (Input.GetKeyDown (KeyCode.C)) {
+			if (cam == 1) {
+				cam = 2;
+				tps.gameObject.SetActive (true);
+				fps.gameObject.SetActive (false);
+			} else {
+				if (cam == 2) {
+					cam = 1;
+					fps.gameObject.SetActive (true);
+					tps.gameObject.SetActive (false);
+				}
+			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.P)) {
+			if (pause == false) {
+				pause = true;
+				WalkSpeed = 0;
+				TurnSpeed = 0;
+				quitButton.SetActive (true);
+			} else {
+				if (pause == true) {
+					pause = false;
+					WalkSpeed = 20;
+					TurnSpeed = 50;
+					quitButton.SetActive (false);
+				}
+			}
+		}
+
 	}
 
 
