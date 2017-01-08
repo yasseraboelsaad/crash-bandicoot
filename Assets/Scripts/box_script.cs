@@ -11,6 +11,9 @@ public class box_script : MonoBehaviour {
 	GameObject AkuAkuMask;
 	public GameObject life;
 	GameObject LifeBox;
+	public GameObject wumpa;
+	GameObject WumpaFruit;
+
 
 	// Use this for initialization
 	void Start () {
@@ -62,7 +65,5 @@ public class box_script : MonoBehaviour {
 				Destroy (this.gameObject);
 			}
 		}
-
-
 	}
 }

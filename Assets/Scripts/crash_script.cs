@@ -14,7 +14,7 @@ public class crash_script : MonoBehaviour {
 	public bool isFalling;
 	public int akuaku;
 	public bool isProtected;
-	private double Timer = 0;
+	public double Timer = 0;
 	public Text wumpaText;
 	public Text crashText;
 	public Text akuakuText;
@@ -29,6 +29,7 @@ public class crash_script : MonoBehaviour {
 	Animator bossAnim;
 	public static string lastScene;
 	boss_script bossScript;
+
 
 	// Use this for initialization
 	void Start () {
@@ -63,7 +64,6 @@ public class crash_script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		lastScene = SceneManager.GetActiveScene ().name;
-		Timer += Time.deltaTime;
 		//Dead
 		if(hp <=0){
 			GameObject sound = GameObject.Find ("CrashDie");
@@ -83,6 +83,7 @@ public class crash_script : MonoBehaviour {
 			}
 		}
 		if (!isPaused) {
+			Timer += Time.deltaTime;
 			//Hide Pause Menu
 			foreach(GameObject g in pauseObjects){
 				g.SetActive(false);
@@ -183,10 +184,14 @@ public class crash_script : MonoBehaviour {
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
 				isProtected = true;
-				akuaku = 2;
+				akuaku = 0;
 				Timer = 0;
 			}
-			if (isProtected && Timer >= 30) {
+
+			if (isProtected && Timer >= 10) {
+				GameObject sound = GameObject.Find ("thirdAkuaku");
+				AudioSource audio = sound.GetComponent<AudioSource>();
+				audio.Stop ();
 				isProtected = false;
 			}
 
