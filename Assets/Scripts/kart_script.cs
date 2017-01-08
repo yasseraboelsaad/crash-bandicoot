@@ -89,7 +89,8 @@ public class kart_script : MonoBehaviour {
 				GameObject sound = GameObject.Find ("jump");
 				AudioSource audio = sound.GetComponent<AudioSource>();
 				audio.Play ();
-				rb.AddForce (new Vector3 (0, JumpForce, 0), ForceMode.Impulse);
+				myAnim.SetTrigger ("jump");
+//				rb.AddForce (transform.up * 300, ForceMode.Impulse);
 			}
 			float h = Input.GetAxis ("Horizontal");
 			transform.Rotate (new Vector3 (0, 1, 0) * h * Time.deltaTime * TurnSpeed*-1);
