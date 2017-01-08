@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\death_screen_script.cs" />
      <Compile Include="Assets\Scripts\enemies_hit_script.cs" />
      <Compile Include="Assets\Scripts\hole_script.cs" />
+     <Compile Include="Assets\Scripts\kart_script.cs" />
      <Compile Include="Assets\Scripts\life_script.cs" />
      <Compile Include="Assets\Scripts\start_menu_script.cs" />
      <Compile Include="Assets\Scripts\transitionToLevel1_script.cs" />
